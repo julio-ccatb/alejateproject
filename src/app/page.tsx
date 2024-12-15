@@ -46,16 +46,14 @@ const testimonials = [
 
 export default async function Home() {
   return (
-    <HydrateClient>
-      <div className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-background to-accent">
-        <HeroCarousel />
-        <Excursions />
-        <FeaturedContent />
-        <AnimatedTestimonials testimonials={testimonials} />
-        <ServicesSection />
+    <div className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-background to-accent">
+      <HeroCarousel />
+      <Excursions />
+      <FeaturedContent />
+      <AnimatedTestimonials testimonials={testimonials} />
+      <ServicesSection />
 
-        <Footer />
-      </div>
-    </HydrateClient>
+      <Footer />
+    </div>
   );
 }

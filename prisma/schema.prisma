@@ -68,6 +68,8 @@ model User {
     sessions      Session[]
     posts         Post[]
     role          Role[]    @default([NOT_VERIFIED])
+
+    Participant Participant[]
 }
 
 model VerificationToken {
@@ -76,6 +78,70 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model TourPackage {
+    id                       Int         @id @default(autoincrement())
+    title                    String
+    pricePerPerson           Decimal
+    difficulty               String[]
+    description              String
+    duration                 String
+    requirements             String[]
+    destination              String
+    recommendedClothing      String
+    picture                  String
+    packageType              PackageType
+    initialDeposit           String
+    policyLink               String
+    paymentMethods           String[]
+    remainingPaymentDeadline String
+    fullPaymentRequirement   String
+    departureLocation        String
+    departureTime            String
+    returnTime               String
+    includes                 String[]
+    gallery                  String[]
+    participantsLimit        Int
+
+    itinerary    Itinerary[]   @relation("TourPackageItineraries")
+    participants Participant[] @relation("TourPackageParticipants")
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Itinerary {
+    id            Int         @id @default(autoincrement())
+    stop          String
+    activities    String[]
+    tourPackage   TourPackage @relation("TourPackageItineraries", fields: [tourPackageId], references: [id])
+    tourPackageId Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Participant {
+    id              Int             @id @default(autoincrement())
+    user            User            @relation(fields: [userId], references: [id])
+    userId          String
+    tourPackage     TourPackage     @relation("TourPackageParticipants", fields: [tourPackageId], references: [id])
+    tourPackageId   Int
+    participantType ParticipantType
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+enum PackageType {
+    TEMPLATE
+    TOUR
+}
+
+enum ParticipantType {
+    STAFF
+    PARTICIPANT
 }
 
 enum Role {
