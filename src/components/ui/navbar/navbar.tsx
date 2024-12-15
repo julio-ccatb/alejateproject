@@ -19,24 +19,40 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
-import { Chrome, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
+import { auth } from "@/server/auth";
+import LogInWithSocials from "@/app/_components/auth/loginWithSocials";
+import ThemeToggle from "@/components/mode-toggle";
 
-export default function NavbarDemo() {
+export default async function NavbarDemo() {
+  // const session = await auth();
+
   return (
-    <header className="bg-background sticky top-0 z-40 w-full border-b">
+    <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 !w-full items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-2">
-          <Link href="#" className="flex items-center gap-2" prefetch={false}>
+          <Link
+            href="#"
+            className="flex items-center gap-2 p-4 dark:hidden"
+            prefetch={false}
+          >
             <Image src={"/logo.png"} alt="logo" height={60} width={60} />
           </Link>
+          <Link
+            href="#"
+            className="flex items-center gap-2 p-4"
+            prefetch={false}
+          >
+            <Image src={"/logo-white.png"} alt="logo" height={60} width={60} />
+          </Link>
         </div>
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-6 dark:visible md:flex">
           <NavigationMenu>
             <NavigationMenuList className="flex items-center gap-6">
               <NavigationMenuItem>
                 <NavigationMenuLink
                   href="#"
-                  className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                 >
                   Inicio
                 </NavigationMenuLink>
@@ -44,7 +60,7 @@ export default function NavbarDemo() {
               <NavigationMenuItem>
                 <NavigationMenuLink
                   href="#"
-                  className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                 >
                   Nosotros
                 </NavigationMenuLink>
@@ -52,7 +68,7 @@ export default function NavbarDemo() {
               <NavigationMenuItem>
                 <NavigationMenuLink
                   href="#"
-                  className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                 >
                   Tours
                 </NavigationMenuLink>
@@ -60,21 +76,23 @@ export default function NavbarDemo() {
               <NavigationMenuItem>
                 <NavigationMenuLink
                   href="#"
-                  className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                 >
-                  About
+                  Servicios
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
-        <Button
-          variant="outline"
-          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex max-w-[700px] items-center gap-2 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-        >
-          <Chrome className="h-5 w-5" />
-          Continue with Google
-        </Button>
+        <div className="flex items-center gap-2">
+          <LogInWithSocials />
+          {/* {session && session.user ? (
+            <>Hi {session.user.name}</>
+          ) : (
+            <LogInWithSocials />
+          )} */}
+          <ThemeToggle />
+        </div>
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="md:hidden">
@@ -124,19 +142,18 @@ export default function NavbarDemo() {
                       href="#"
                       className="flex items-center gap-2 py-2 text-lg font-semibold"
                     >
-                      Tienda
+                      Servicios
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
-              <Button
-                variant="outline"
-                className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-center gap-2 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                <Chrome className="h-5 w-5" />
-                Continue with Google
-              </Button>
+              {/* {session && session.user ? (
+                <>Hi {session.user.name}</>
+              ) : (
+                <LogInWithSocials />
+                )} */}
             </div>
+            <LogInWithSocials />
           </SheetContent>
         </Sheet>
       </div>

@@ -79,11 +79,7 @@ export function HeroCarousel() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Button
-            size="lg"
-            variant={"secondary"}
-            className="text-2xl font-bold"
-          >
+          <Button size="lg" className="text-2xl font-bold">
             ¡COMIENZA TU VIAJE! <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </motion.div>

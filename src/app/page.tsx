@@ -1,5 +1,8 @@
 import Excursions from "@/components/excursions/excursions";
+import { FeaturedContent } from "@/components/featuredContent/featuredContent";
+import Footer from "@/components/footer";
 import { HeroCarousel } from "@/components/hero/hero-carousel";
+import ServicesSection from "@/components/services/services-section";
 import { AnimatedTestimonials } from "@/components/testimonials/animated-testimonials";
 import { HydrateClient } from "@/trpc/server";
 
@@ -44,9 +47,14 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <HeroCarousel />
-      <Excursions />
-      <AnimatedTestimonials testimonials={testimonials} />
+      <div className="flex min-h-screen w-full flex-col items-center justify-center">
+        <HeroCarousel />
+        <Excursions />
+        <FeaturedContent />
+        <ServicesSection />
+        {/* <AnimatedTestimonials testimonials={testimonials} /> */}
+        <Footer />
+      </div>
     </HydrateClient>
   );
 }

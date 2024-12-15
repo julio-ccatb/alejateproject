@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
 
 type Testimonial = {
   quote: string;
@@ -43,7 +44,7 @@ export const AnimatedTestimonials = ({
     return Math.floor(Math.random() * 21) - 10;
   };
   return (
-    <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
+    <div className="mx-auto flex max-w-sm items-center px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
         <div>
           <div className="relative h-80 w-full">
@@ -145,18 +146,20 @@ export const AnimatedTestimonials = ({
             </motion.p>
           </motion.div>
           <div className="flex gap-4 pt-12 md:pt-0">
-            <button
+            <Button
+              variant={"ghost"}
               onClick={handlePrev}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button rounded-full"
             >
-              <ArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
-            </button>
-            <button
+              <ArrowLeft className="h-5 w-5 transition-transform duration-300 group-hover/button:rotate-12" />
+            </Button>
+            <Button
+              variant={"ghost"}
               onClick={handleNext}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button rounded-full"
             >
-              <ArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
-            </button>
+              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover/button:-rotate-12" />
+            </Button>
           </div>
         </div>
       </div>

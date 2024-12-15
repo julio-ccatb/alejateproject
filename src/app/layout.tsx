@@ -7,6 +7,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import NavbarDemo from "../components/ui/navbar/navbar";
+import { ThemeProvider } from "./providers/themeProvider";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -35,8 +36,15 @@ export default function RootLayout({
         className={cn("antialiased", fontHeading.variable, fontBody.variable)}
       >
         <TRPCReactProvider>
-          <NavbarDemo />
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NavbarDemo />
+            {children}
+          </ThemeProvider>
         </TRPCReactProvider>
       </body>
     </html>

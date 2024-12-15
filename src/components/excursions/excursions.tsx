@@ -3,8 +3,9 @@ import { DirectionAwareHover } from "@/components/direction-aware-hover";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
-import { Clock, Eye, MapPin, Star } from "lucide-react";
+import { ArrowRight, Clock, Eye, MapPin, Star } from "lucide-react";
 import { Badge } from "../ui/badge";
+import Link from "next/link";
 export const Excursions = () => {
   const items = [
     {
@@ -59,7 +60,7 @@ export const Excursions = () => {
     },
   ];
   return (
-    <section className="w-full bg-gray-100 py-16">
+    <section className="py-16">
       <div className="mx-auto max-w-7xl px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -91,12 +92,12 @@ export const Excursions = () => {
                       {item.name}
                     </h3>
 
-                    <div className="text-muted-foreground flex items-center gap-1">
+                    <div className="flex items-center gap-1 text-muted-foreground">
                       <MapPin className="h-4 w-4" />
                       <span className="text-sm">{item.location}</span>
                     </div>
 
-                    <div className="text-muted-foreground flex items-center gap-1">
+                    <div className="flex items-center gap-1 text-muted-foreground">
                       <Clock className="h-4 w-4" />
                       <span className="text-sm">{item.duration}</span>
                     </div>
@@ -108,7 +109,7 @@ export const Excursions = () => {
                       <span className="text-sm font-medium">
                         {item.rating.toFixed(1)}
                       </span>
-                      <span className="text-muted-foreground text-sm">
+                      <span className="text-sm text-muted-foreground">
                         ({item.reviewCount} reseñas)
                       </span>
                     </div>
@@ -116,7 +117,7 @@ export const Excursions = () => {
                 </CardContent>
 
                 <CardFooter className="flex items-center justify-between p-4 pt-0">
-                  <p className="text-primary text-lg font-semibold">
+                  <p className="text-lg font-semibold text-primary">
                     {item.price.toLocaleString("es-DO")} DOP
                   </p>
                   <Button className="gap-2">
@@ -126,6 +127,25 @@ export const Excursions = () => {
                 </CardFooter>
               </Card>
             ))}
+            <Link href="/excursiones">
+              <Card className="group h-full cursor-pointer overflow-hidden transition-colors">
+                <div className="flex h-full flex-col items-center justify-center gap-4 p-6 group-[&:hover]:bg-primary/10">
+                  <motion.div
+                    initial={{ scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    className="rounded-full bg-primary/10 p-6"
+                  >
+                    <ArrowRight className="h-8 w-8 text-primary" />
+                  </motion.div>
+                  <div className="text-center">
+                    <h3 className="text-xl font-bold">Ver más excursiones</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Descubre todas nuestras aventuras
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </Link>
           </div>
         </motion.div>
       </div>
