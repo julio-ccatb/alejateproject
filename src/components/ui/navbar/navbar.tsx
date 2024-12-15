@@ -3,29 +3,47 @@
  * @see https://v0.dev/t/omGQmKHA2w5
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
-  SheetTrigger,
   SheetContent,
   SheetTitle,
+  SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
-import Image from "next/image";
-import { Menu } from "lucide-react";
-import { auth } from "@/server/auth";
 import LogInWithSocials from "@/app/_components/auth/loginWithSocials";
 import ThemeToggle from "@/components/mode-toggle";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import { auth } from "@/server/auth";
+import {
+  BadgeCheck,
+  Bell,
+  ChevronsUpDown,
+  CreditCard,
+  LogOut,
+  Menu,
+  Sparkles,
+} from "lucide-react";
+import Image from "next/image";
+import { Avatar, AvatarFallback } from "../avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../dropdown-menu";
 
 export default async function NavbarDemo() {
-  // const session = await auth();
+  const session = await auth();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
@@ -85,12 +103,96 @@ export default async function NavbarDemo() {
           </NavigationMenu>
         </nav>
         <div className="flex items-center gap-2">
-          <LogInWithSocials />
-          {/* {session && session.user ? (
-            <>Hi {session.user.name}</>
+          {/* <LogInWithSocials /> */}
+          {session && session.user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant={"ghost"} className="py-4">
+                  <Avatar className="h-8 w-8 rounded-lg">
+                    <Image
+                      src={session.user.image ?? ""}
+                      alt={session.user.name ?? ""}
+                      width={32}
+                      height={32}
+                      className="rounded-lg"
+                      priority
+                    />
+                    <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  </Avatar>
+                  <div className="grid flex-1 text-left text-sm leading-tight">
+                    <span className="truncate font-semibold">
+                      {session.user.name}
+                    </span>
+                    <span className="truncate text-xs">
+                      {session.user.email}
+                    </span>
+                  </div>
+                  <ChevronsUpDown className="ml-auto size-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                side="bottom"
+                align="end"
+                sideOffset={4}
+              >
+                <DropdownMenuLabel className="p-0 font-normal">
+                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <Image
+                        src={session.user.image ?? ""}
+                        alt={session.user.name ?? ""}
+                        width={32}
+                        height={32}
+                        className="rounded-lg"
+                        priority
+                      />
+                      <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">
+                        {session.user.name}
+                      </span>
+                      <span className="truncate text-xs">
+                        {session.user.email}
+                      </span>
+                    </div>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <Sparkles />
+                    Upgrade to Pro
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <BadgeCheck />
+                    Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <CreditCard />
+                    Billing
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Bell />
+                    Notifications
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/api/auth/signout">
+                    <LogOut />
+                    Log out
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <LogInWithSocials />
-          )} */}
+          )}
           <ThemeToggle />
         </div>
         <Sheet>
@@ -147,13 +249,13 @@ export default async function NavbarDemo() {
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
-              {/* {session && session.user ? (
-                <>Hi {session.user.name}</>
+              {session && session.user ? (
+                <Button>Hi {session.user.name}</Button>
               ) : (
                 <LogInWithSocials />
-                )} */}
+              )}
             </div>
-            <LogInWithSocials />
+            {/* <LogInWithSocials /> */}
           </SheetContent>
         </Sheet>
       </div>
