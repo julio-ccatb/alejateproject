@@ -46,7 +46,7 @@ export function ExpandableExcursionesCard() {
       </AnimatePresence>
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 z-[100] grid place-items-center">
+          <div className="fixed inset-0 z-[10000] grid place-items-center">
             <motion.button
               key={`button-${active.title}-${id}`}
               layout
@@ -92,10 +92,10 @@ export function ExpandableExcursionesCard() {
                       {active.title}
                     </motion.h3>
                     <motion.p
-                      layoutId={`description-${active.description}-${id}`}
-                      className="text-neutral-600 dark:text-neutral-400"
+                      layoutId={`price-${active.price}-${id}`}
+                      className="text-secondary-foreground"
                     >
-                      {active.description}
+                      {active.price}
                     </motion.p>
                   </div>
 
@@ -152,10 +152,10 @@ export function ExpandableExcursionesCard() {
                   {card.title}
                 </motion.h3>
                 <motion.p
-                  layoutId={`description-${card.description}-${id}`}
-                  className="text-center text-neutral-600 dark:text-neutral-400 md:text-left"
+                  layoutId={`price-${card.price}-${id}`}
+                  className="text-center text-secondary-foreground md:text-left"
                 >
-                  {card.description}
+                  {card.price}
                 </motion.p>
               </div>
             </div>
@@ -197,12 +197,11 @@ export const CloseIcon = () => {
     </motion.svg>
   );
 };
-
 const cards = [
   {
-    description: "Camping en Cayo Tuna e Isla Cabra",
-    title: "RD$5,950",
-    src: "/d4.jpg",
+    title: "Camping en Cayo Tuna e Isla Cabra",
+    price: "RD$5,950",
+    src: "/d1.jpg",
     ctaText: "Explorar",
     ctaLink: "#",
     content: () => {
@@ -216,9 +215,9 @@ const cards = [
     },
   },
   {
-    description: "Camping en Playa Ermitaño",
-    title: "RD$5,750",
-    src: "/d1.jpg",
+    title: "Camping en Playa Ermitaño",
+    price: "RD$5,750",
+    src: "/d2.jpg",
     ctaText: "Explorar",
     ctaLink: "#",
     content: () => {
@@ -232,9 +231,9 @@ const cards = [
     },
   },
   {
-    description: "Escalada en Frontón",
-    title: "RD$3,950",
-    src: "/d2.jpg",
+    title: "Escalada en Frontón",
+    price: "RD$3,950",
+    src: "/d3.jpg",
     ctaText: "Explorar",
     ctaLink: "#",
     content: () => {
@@ -248,9 +247,9 @@ const cards = [
     },
   },
   {
-    description: "Súper Frontón",
-    title: "RD$6,750",
-    src: "/d3.jpg",
+    title: "Súper Frontón",
+    price: "RD$6,750",
+    src: "/d4.jpg",
     ctaText: "Explorar",
     ctaLink: "#",
     content: () => {

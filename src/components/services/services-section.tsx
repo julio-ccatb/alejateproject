@@ -55,7 +55,7 @@ const itemVariants = {
 
 export default function ServicesSection() {
   return (
-    <section className="w-full bg-gradient-to-b py-20">
+    <section className="w-full py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial="hidden"

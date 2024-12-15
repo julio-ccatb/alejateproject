@@ -67,7 +67,7 @@ export default function Footer() {
                 className="group flex items-start gap-3"
               >
                 <Image
-                  src="/blog/guatape-thumbnail.jpg"
+                  src="/d1.jpg"
                   alt="11 Cosas Que Hacer En Guatapé"
                   width={80}
                   height={60}
@@ -85,22 +85,22 @@ export default function Footer() {
             <div>
               <h3 className="mb-4 text-xl font-semibold">@alejateconale</h3>
               <div className="flex gap-4">
-                <a
+                <Link
                   href="https://youtube.com/@alejateconale"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 transition-colors hover:text-[#8CD4E8]"
                 >
                   <Youtube className="h-6 w-6" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://instagram.com/alejateconale"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 transition-colors hover:text-[#8CD4E8]"
+                  className=""
                 >
                   <Instagram className="h-6 w-6" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

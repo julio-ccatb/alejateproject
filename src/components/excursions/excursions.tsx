@@ -66,7 +66,7 @@ export const Excursions = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 text-center text-3xl font-bold md:text-4xl"
+          className="mb-12 text-center text-3xl font-bold text-primary md:text-4xl"
         >
           Excursiones Abiertas
         </motion.h2>
@@ -117,10 +117,10 @@ export const Excursions = () => {
                 </CardContent>
 
                 <CardFooter className="flex items-center justify-between p-4 pt-0">
-                  <p className="text-lg font-semibold text-primary">
+                  <p className="text-lg font-semibold">
                     {item.price.toLocaleString("es-DO")} DOP
                   </p>
-                  <Button className="gap-2">
+                  <Button variant={"link"} className="gap-2">
                     <Eye className="h-4 w-4" />
                     Ver detalles
                   </Button>
