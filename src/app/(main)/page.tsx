@@ -4,7 +4,6 @@ import Footer from "@/components/footer";
 import { HeroCarousel } from "@/components/hero/hero-carousel";
 import ServicesSection from "@/components/services/services-section";
 import { AnimatedTestimonials } from "@/components/testimonials/animated-testimonials";
-import { HydrateClient } from "@/trpc/server";
 
 const testimonials = [
   {
