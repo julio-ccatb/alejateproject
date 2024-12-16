@@ -1,5 +1,4 @@
 import LogInWithSocials from "@/app/_components/auth/loginWithSocials";
-import ThemeToggle from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -15,6 +14,7 @@ import Link from "next/link";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../sheet";
 import { auth } from "@/server/auth";
 import { Badge } from "../badge";
+import { ScrollArea } from "../scroll-area";
 
 export const Navbar = async () => {
   const session = await auth();
@@ -171,7 +171,6 @@ export const Navbar = async () => {
           ) : (
             <LogInWithSocials />
           )}
-          <ThemeToggle />
         </div>
         <div className="flex w-12 shrink items-end justify-end lg:hidden">
           <Sheet>
@@ -187,37 +186,39 @@ export const Navbar = async () => {
                   <Image src={"/logo.png"} height={50} width={50} alt="logo" />
                 </Link>
               </SheetHeader>
-              <div className="container absolute right-0 top-20 flex w-full flex-col gap-8 border-t bg-background p-4 shadow-lg">
-                {navigationItems.map((item) => (
-                  <div key={item.title}>
-                    <div className="flex flex-col gap-2">
-                      {item.href ? (
-                        <Link
-                          href={item.href}
-                          className="flex items-center justify-between"
-                        >
-                          <span className="text-lg">{item.title}</span>
-                          <MoveRight className="h-4 w-4 stroke-1 text-muted-foreground" />
-                        </Link>
-                      ) : (
-                        <p className="text-lg">{item.title}</p>
-                      )}
-                      {item.items?.map((subItem) => (
-                        <Link
-                          key={subItem.title}
-                          href={subItem.href}
-                          className="flex items-center justify-between"
-                        >
-                          <span className="text-muted-foreground">
-                            {subItem.title}
-                          </span>
-                          <MoveRight className="h-4 w-4 stroke-1" />
-                        </Link>
-                      ))}
+              <ScrollArea className="h-4/5">
+                <div className="mt-6 flex w-full flex-col gap-8 bg-background p-4">
+                  {navigationItems.map((item) => (
+                    <div key={item.title}>
+                      <div className="flex flex-col gap-2">
+                        {item.href ? (
+                          <Link
+                            href={item.href}
+                            className="flex items-center justify-between"
+                          >
+                            <span className="text-lg">{item.title}</span>
+                            <MoveRight className="h-4 w-4 stroke-1 text-muted-foreground" />
+                          </Link>
+                        ) : (
+                          <p className="text-lg">{item.title}</p>
+                        )}
+                        {item.items?.map((subItem) => (
+                          <Link
+                            key={subItem.title}
+                            href={subItem.href}
+                            className="flex items-center justify-between"
+                          >
+                            <span className="text-muted-foreground">
+                              {subItem.title}
+                            </span>
+                            <MoveRight className="h-4 w-4 stroke-1" />
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </ScrollArea>
             </SheetContent>
           </Sheet>
         </div>
