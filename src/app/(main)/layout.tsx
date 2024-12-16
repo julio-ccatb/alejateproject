@@ -1,11 +1,6 @@
 import "@/styles/globals.css";
 
-import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-
-import { cn } from "@/lib/utils";
-import { TRPCReactProvider } from "@/trpc/react";
-import { Inter } from "next/font/google";
 
 import { Navbar } from "@/components/ui/navbar/navbar";
 
@@ -15,31 +10,13 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const fontHeading = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-heading",
-});
-
-const fontBody = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-body",
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body
-        className={cn("antialiased", fontHeading.variable, fontBody.variable)}
-      >
-        <TRPCReactProvider>
-          <Navbar />
-          {children}
-        </TRPCReactProvider>
-      </body>
-    </html>
+    <>
+      <Navbar />
+      {children}
+    </>
   );
 }
