@@ -81,25 +81,25 @@ model VerificationToken {
 }
 
 model TourPackage {
-    id                       Int         @id @default(autoincrement())
+    id                       String      @id @default(cuid())
     title                    String
-    pricePerPerson           Decimal
-    difficulty               String[]
     description              String
     duration                 String
-    requirements             String[]
     destination              String
-    recommendedClothing      String
     picture                  String
-    packageType              PackageType
-    initialDeposit           String
+    pricePerPerson           Decimal     @db.Decimal(10, 2)
+    initialDeposit           Decimal     @default("1000.00") @db.Decimal(10, 2)
     policyLink               String
-    paymentMethods           String[]
     remainingPaymentDeadline String
     fullPaymentRequirement   String
     departureLocation        String
-    departureTime            String
-    returnTime               String
+    departureTime            DateTime
+    returnTime               DateTime
+    packageType              PackageType @default(TOUR)
+    difficulty               Dificulty   @default(NORMAL)
+    recommendedClothing      String[]
+    paymentMethods           String[]
+    requirements             String[]
     includes                 String[]
     gallery                  String[]
     participantsLimit        Int
@@ -116,7 +116,7 @@ model Itinerary {
     stop          String
     activities    String[]
     tourPackage   TourPackage @relation("TourPackageItineraries", fields: [tourPackageId], references: [id])
-    tourPackageId Int
+    tourPackageId String
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -127,11 +127,18 @@ model Participant {
     user            User            @relation(fields: [userId], references: [id])
     userId          String
     tourPackage     TourPackage     @relation("TourPackageParticipants", fields: [tourPackageId], references: [id])
-    tourPackageId   Int
+    tourPackageId   String
     participantType ParticipantType
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+}
+
+enum Dificulty {
+    EASY
+    NORMAL
+    DIFICULT
+    HARD
 }
 
 enum PackageType {
