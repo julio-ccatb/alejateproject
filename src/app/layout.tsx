@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { TRPCReactProvider } from "@/trpc/react";
 import { Inter } from "next/font/google";
 
-import { Navbar } from "@/components/ui/navbar/navbar2";
+import { Navbar } from "@/components/ui/navbar/navbar";
 import { ThemeProvider } from "./providers/themeProvider";
 
 export const metadata: Metadata = {
