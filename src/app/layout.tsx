@@ -3,10 +3,11 @@ import "@/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
-import { TRPCReactProvider } from "@/trpc/react";
 import { cn } from "@/lib/utils";
+import { TRPCReactProvider } from "@/trpc/react";
 import { Inter } from "next/font/google";
-import NavbarDemo from "../components/ui/navbar/navbar";
+
+import { Navbar } from "@/components/ui/navbar/navbar2";
 import { ThemeProvider } from "./providers/themeProvider";
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <NavbarDemo />
+            <Navbar />
             {children}
           </ThemeProvider>
         </TRPCReactProvider>

@@ -7,7 +7,7 @@ const LogInWithSocials = () => {
   return (
     <>
       <Button onClick={() => signIn("google")} variant="secondary" className="">
-        <Chrome /> Login with Google
+        <Chrome /> Inicia con Google
       </Button>
     </>
   );
