@@ -8,31 +8,31 @@ export const navItems = [
     items: [], // Empty array as there are no child items for Dashboard
   },
   {
-    title: "Employee",
-    url: "/dashboard/employee",
+    title: "Staff",
+    url: "/dashboard/staff",
     icon: "user",
     shortcut: ["e", "e"],
     isActive: false,
     items: [], // No child items
   },
   {
-    title: "Product",
-    url: "/dashboard/product",
+    title: "Tours",
+    url: "/dashboard/tours",
     icon: "product",
     shortcut: ["p", "p"],
     isActive: false,
     items: [], // No child items
   },
   {
-    title: "Account",
+    title: "Cuenta",
     url: "#", // Placeholder as there is no direct link for the parent
     icon: "billing",
     isActive: true,
 
     items: [
       {
-        title: "Profile",
-        url: "/dashboard/profile",
+        title: "Perfil",
+        url: "/dashboard/user",
         icon: "userPen",
         shortcut: ["m", "m"],
       },
@@ -44,12 +44,12 @@ export const navItems = [
       },
     ],
   },
-  {
-    title: "Kanban",
-    url: "/dashboard/kanban",
-    icon: "kanban",
-    shortcut: ["k", "k"],
-    isActive: false,
-    items: [], // No child items
-  },
+  // {
+  //   title: "Kanban",
+  //   url: "/dashboard/kanban",
+  //   icon: "kanban",
+  //   shortcut: ["k", "k"],
+  //   isActive: false,
+  //   items: [], // No child items
+  // },
 ];
